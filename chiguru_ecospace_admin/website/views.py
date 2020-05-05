@@ -5,16 +5,16 @@ from django.http import HttpResponse
 
 #home
 def home(request):
-    return HttpResponse('<h1>Website-Home<h1>')
+    return render(request, 'website/home.html')
 
 #about
 def about(request):
-    return HttpResponse('<h1>Website-about<h1>')
+    return render(request, 'website/about.html')
 
 #install
 def install(request):
-    return HttpResponse('<h1>Website-install<h1>')
+    return render(request, 'website/install.html')
 
 #contact
 def contact(request):
-    return HttpResponse('<h1>Website-contact<h1>')
+    return render(request, 'website/contact.html')

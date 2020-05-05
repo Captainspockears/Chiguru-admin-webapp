@@ -24,4 +24,5 @@ admin.site.index_title = "Website and Mobile Application Administration"
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('website.urls')),
+    path('mobileadmin/', include('mobileadmin.urls')),
 ]

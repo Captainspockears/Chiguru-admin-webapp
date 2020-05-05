@@ -1,0 +1,31 @@
+{% extends "mobileadmin/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <!-- Manage events -->
+    <h1>Events</h1>
+    <ul>
+        <li><a href="{% url 'mobileadmin-addevent' %}">Add event</a></li>
+        <li>Update Event</li>
+        <li>Delete Event</li>
+    </ul> 
+
+    <!-- Manage items -->
+    <h1>Items</h1>
+    <ul>
+        <li>Add item</li>
+        <li>Update Item</li>
+        <li>Delete Item</li>
+    </ul> 
+
+    <!-- Manage shop products -->
+    <h1>Shop</h1>
+    <ul>
+        <li>Add Product</li>
+        <li>Update Product</li>
+        <li>Delete Product</li>
+    </ul> 
+</div>
+
+{% endblock content %}

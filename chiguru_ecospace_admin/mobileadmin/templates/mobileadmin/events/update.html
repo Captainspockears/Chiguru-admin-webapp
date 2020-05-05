@@ -1,0 +1,48 @@
+{% extends "mobileadmin/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <h1>Update</h1>
+    <br>
+    <p>Search for the event by title:</p>
+</div>
+
+<div class="container">
+<form action="#" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            {{field}}
+        {% endfor %}
+
+    <button type="submit" class="btn btn-primary" name="search">Search</button>
+
+</form>
+
+<div class="btn-group">
+  <button type="submit" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Update
+  </button>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="#">Title</a>
+    <a class="dropdown-item" href="#">Description</a>
+    <a class="dropdown-item" href="#">Image</a>
+  </div>
+</div>
+
+</div>
+
+<br>
+<br>
+
+<div class="container">
+{% if searchvisibility %}
+    <center><img src="{{ imagepath }}" height="600"></img></center>
+    <br>
+    <br>
+    <h4>{{ title }}</h3>
+    <h5>{{ desc }}</h3>
+{% endif %}
+</div>
+
+{% endblock content %}
