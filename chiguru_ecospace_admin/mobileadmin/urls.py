@@ -10,4 +10,5 @@ urlpatterns = [
     #events
     path('events/add/', views.addevent, name='mobileadmin-addevent'),
     path('events/update/', views.updateevent, name='mobileadmin-updateevent'),
+    path('events/delete/', views.deleteevent, name='mobileadmin-deleteevent'),
 ]

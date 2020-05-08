@@ -23,7 +23,6 @@ class Firebaseengine:
         self.bucket = storage.bucket()
 
     def addObject(self, collectionid, objectdict):
-        print(objectdict)
         doc_ref = self.db.collection(collectionid).add(objectdict)
         return doc_ref[1].id
 
@@ -38,6 +37,17 @@ class Firebaseengine:
         blob = self.bucket.blob(destination_blob_name)
         blob.upload_from_filename(source)
         return "gs://" + self.appid + "/" + folder + "/" + imagename + "." + imagetype
+
+    def updateImage(self, oldpath, folder, imagename, source, imagetype='jpg'):
+
+        #delete the old image
+        blob = self.bucket.blob(folder + '/' + oldpath.split('/')[-1])
+        blob.from_string(oldpath)
+        blob.delete()
+
+        #add the new image and return the new path
+        return self.addImage(folder, imagename, source, imagetype)
+
 
     def getDocument(self, collectionid, objectdict):
         # Create a reference to the collection
@@ -76,9 +86,7 @@ class Firebaseengine:
 
         return False
 
-    def getImage(self, folder, imagename, path):
-        #destination_blob_name = folder + "/" + imagename
-        print(path)
+    def getImage(self, folder, path):
         blob = self.bucket.blob(folder + '/' + path.split('/')[-1])
         blob.from_string(path)
         return blob.generate_signed_url(datetime.timedelta(seconds=300), method='GET')
