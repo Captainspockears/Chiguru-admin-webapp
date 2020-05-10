@@ -4,6 +4,7 @@ cachetools==4.1.0
 certifi==2020.4.5.1
 chardet==3.0.4
 Django==3.0.5
+<<<<<<< HEAD
 firebase-admin==4.2.0
 google-api-core==1.17.0
 google-api-python-client==1.8.2
@@ -27,6 +28,9 @@ pytz==2020.1
 requests==2.23.0
 rsa==4.0
 six==1.14.0
+=======
+pytz==2019.3
+>>>>>>> 5490518f210658ffaa1484fcff5493f87995d6bc
 sqlparse==0.3.1
 uritemplate==3.0.1
 urllib3==1.25.9
