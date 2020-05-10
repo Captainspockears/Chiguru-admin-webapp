@@ -1,0 +1,1 @@
+from chiguru_ecospace_admin.wsgi import application as app

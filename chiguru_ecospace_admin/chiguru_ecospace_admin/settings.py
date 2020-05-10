@@ -25,8 +25,6 @@ SECRET_KEY = '-_p)%$+@wbol=l6+esr&9f1)(i$4h90*soleo+uy(51mp0#2s+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -121,3 +119,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = 'mobileadmin-home'
+ALLOWED_HOSTS = ['https://chiguru-ecospace-website.el.r.appspot.com']
