@@ -8,23 +8,23 @@
     <ul>
         <li><a href="{% url 'mobileadmin-addevent' %}">Add event</a></li>
         <li><a href="{% url 'mobileadmin-updateevent' %}">Update event</a></li>
-        <li>Delete Event</li>
-    </ul> 
-
-    <!-- Manage items -->
-    <h1>Items</h1>
-    <ul>
-        <li>Add item</li>
-        <li>Update Item</li>
-        <li>Delete Item</li>
+        <li><a href="{% url 'mobileadmin-deleteevent' %}">Delete event</a></li>
     </ul> 
 
     <!-- Manage shop products -->
     <h1>Shop</h1>
     <ul>
-        <li>Add Product</li>
-        <li>Update Product</li>
-        <li>Delete Product</li>
+        <li><a href="{% url 'mobileadmin-addproduct' %}">Add product</a></li>
+        <li><a href="{% url 'mobileadmin-updateproduct' %}">Update product</a></li>
+        <li><a href="{% url 'mobileadmin-deleteproduct' %}">Delete product</a></li>
+    </ul> 
+
+    <!-- Manage items -->
+    <h1>Items</h1>
+    <ul>
+        <li><a href="{% url 'mobileadmin-additem' %}">Add item</a></li>
+        <li><a href="{% url 'mobileadmin-updateitem' %}">Update item</a></li>
+        <li><a href="{% url 'mobileadmin-deleteitem' %}">Delete item</a></li>
     </ul> 
 </div>
 

@@ -5,7 +5,7 @@
 <div class="container">
     <h1>Update</h1>
     <br>
-    <p>Search for the event by title:</p>
+    <p>Search for the product by name:</p>
 </div>
 
 <div class="container">
@@ -17,7 +17,7 @@
 
     <button type="submit" class="btn btn-primary" name="search">Search</button>
     {% if warningflag %}
-    <p>Event not found. Please make sure you have written the correct title.</p>
+    <p>Product not found. Please make sure you have written the correct name.</p>
   {% endif %}
 
 </form>
@@ -33,9 +33,10 @@
     <form action="#" method="post">
       <div class="dropdown-menu">
           {% csrf_token %}
-          <button class="dropdown-item" href="#" type="submit" name="title">Title</a>
+          <button class="dropdown-item" href="#" type="submit" name="name">Name</a>
           <button class="dropdown-item" href="#" type="submit" name="description"> Description</a>
           <button class="dropdown-item" href="#" type="submit" name="image" >Image</a>
+          <button class="dropdown-item" href="#" type="submit" name="price" >Price</a>
       </div>
   </form>
 
@@ -51,8 +52,9 @@
       <center><img src="{{ imagepath }}" height="600"></img></center>
       <br>
       <br>
-      <h4>{{ title }}</h3>      
+      <h4>{{ name }}</h3>      
       <h5>{{ desc }}</h3>
+      <h5>{{ price }}</h3>
   {% endif %}
   </div>
 
@@ -63,9 +65,11 @@
         <input type="file" name="imageinput" id="imageinput">
         <br>
         <br>
-        <h4>{{ title }}</h3>
+        <h4>{{ name }}</h3>
         <br>  
         <h5>{{ desc }}</h3>
+        <br> 
+        <h5>{{ price }}</h3>
         <br>  
         <button type="submit" class="btn btn-primary" name="imagesubmit">Make Changes</button>
     </form>
@@ -73,17 +77,19 @@
   </div>
 
   <div class="container">
-  {% if titleflag %}
+  {% if nameflag %}
     <form action="#" method="post">
     <center><img src="{{ imagepath }}" height="600"></img></center>
     <br>
       {% csrf_token %}
-        <input type="text" class="form-control" id="titleinput" name="titleinput" aria-describedby="titleinputHelp" value="{{ title }}">
-        <small id="titleinputHelp" class="form-text text-muted">Kindly update the title and press make changes.</small>   
+        <input type="text" class="form-control" id="nameinput" name="nameinput" aria-describedby="nameinputHelp" value="{{ name }}">
+        <small id="nameinputHelp" class="form-text text-muted">Kindly update the name and press make changes.</small>   
     <br>  
     <h5>{{ desc }}</h3>
     <br>  
-    <button type="submit" class="btn btn-primary" name="titlesubmit">Make Changes</button>
+    <h5>{{ price }}</h3>
+    <br>  
+    <button type="submit" class="btn btn-primary" name="namesubmit">Make Changes</button>
     </form>
   {% endif %}
   </div>
@@ -93,15 +99,35 @@
       <form action="#" method="post">
       <center><img src="{{ imagepath }}" height="600"></img></center>
       <br>
-      <h4>{{ title }}</h4>
+      <h4>{{ name }}</h4>
       <br>
         {% csrf_token %}
           <textarea class="form-control" id="descinput" name="descinput" rows="20">{{ desc }}</textarea>
           <small id="descinputHelp" class="form-text text-muted">Kindly update the description and press make changes.</small>
       <br>  
+      <h5>{{ price }}</h3>
+      <br>  
       <button type="submit" class="btn btn-primary" name="descsubmit">Make Changes</button>
       </form> 
   {% endif %}
   </div>
+
+  <div class="container">
+    {% if priceflag %}
+      <form action="#" method="post">
+        <center><img src="{{ imagepath }}" height="600"></img></center>
+        <br>
+        <h4>{{ name }}</h4>
+        <br>
+        <h5>{{ desc }}</h5>
+        <br>  
+          {% csrf_token %}
+          <input type="text" class="form-control" id="priceinput" name="priceinput" aria-describedby="priceinputHelp" value="{{ price }}">
+          <small id="descinputHelp" class="form-text text-muted">Kindly update the price and press make changes.</small>
+        <br>  
+        <button type="submit" class="btn btn-primary" name="pricesubmit">Make Changes</button>
+      </form> 
+  {% endif %}
+   </div>
 
 {% endblock content %}

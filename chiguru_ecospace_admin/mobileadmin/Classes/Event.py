@@ -43,7 +43,7 @@ class Event:
         self.fb.updateObject(self.collectionid, self.eventid, self.to_dict())
 
     def deleteEvent(self):
-        self.fb.deleteObject(self.collectionid, self.eventid)
+        self.fb.deleteObject(self.folder, self.imagepath, self.collectionid, self.eventid)
 
     def addImage(self, imagename, source, imagetype='jpg'):
         self.imagepath = self.fb.addImage(self.folder, imagename, source, imagetype)
@@ -56,6 +56,22 @@ class Event:
         #update the image path
         data = {'Title': self.title, 'Description': self.description, 'Imagepath': self.imagepath}
         self.fb.updateObject(self.collectionid, self.eventid, data)
+
+    def updateTitle(self, newtitle):
+
+        self.title = newtitle
+
+        #update the title
+        data = {'Title': self.title, 'Description': self.description, 'Imagepath': self.imagepath}
+        self.fb.updateObject(self.collectionid, self.eventid, data)
+
+    def updateDescription(self, newdesc):
+
+        self.description = newdesc
+
+        #update the title
+        data = {'Title': self.title, 'Description': self.description, 'Imagepath': self.imagepath}
+        self.fb.updateObject(self.collectionid, self.eventid, data)  
 
     def getEventId(self):
         eventid = self.fb.getDocumentId(self.collectionid, self.to_dict())

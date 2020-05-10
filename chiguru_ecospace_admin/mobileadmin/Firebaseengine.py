@@ -29,7 +29,9 @@ class Firebaseengine:
     def updateObject(self, collectionid, docid, objectdict):
         self.db.collection(collectionid).document(docid).set(objectdict)
 
-    def deleteObject(self, collectionid, docid):
+    def deleteObject(self, folder, path, collectionid, docid):
+
+        self.deleteImage(folder, path)
         self.db.collection(collectionid).document(docid).delete()
 
     def addImage(self, folder, imagename, source, imagetype='jpg'):
@@ -41,9 +43,7 @@ class Firebaseengine:
     def updateImage(self, oldpath, folder, imagename, source, imagetype='jpg'):
 
         #delete the old image
-        blob = self.bucket.blob(folder + '/' + oldpath.split('/')[-1])
-        blob.from_string(oldpath)
-        blob.delete()
+        self.deleteImage(folder, oldpath)
 
         #add the new image and return the new path
         return self.addImage(folder, imagename, source, imagetype)
@@ -90,3 +90,8 @@ class Firebaseengine:
         blob = self.bucket.blob(folder + '/' + path.split('/')[-1])
         blob.from_string(path)
         return blob.generate_signed_url(datetime.timedelta(seconds=300), method='GET')
+
+    def deleteImage(self, folder, path):
+        blob = self.bucket.blob(folder + '/' + path.split('/')[-1])
+        blob.from_string(path)
+        blob.delete()

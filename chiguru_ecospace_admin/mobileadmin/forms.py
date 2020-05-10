@@ -10,6 +10,18 @@ class EventForm(forms.Form):
     description = forms.CharField(widget=forms.Textarea)
     image = forms.ImageField()
 
+class ProductForm(forms.Form):
+    name = forms.CharField()
+    description = forms.CharField(widget=forms.Textarea)
+    image = forms.ImageField()
+    price = forms.IntegerField()
+
+class ItemForm(forms.Form):
+    name = forms.CharField()
+    description = forms.CharField(widget=forms.Textarea)
+    image = forms.ImageField()
+
+
 class SearchForm(forms.Form):
     title = forms.CharField()
 

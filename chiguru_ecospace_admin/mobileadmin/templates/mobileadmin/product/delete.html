@@ -5,7 +5,7 @@
 <div class="container">
     <h1>Delete</h1>
     <br>
-    <p>Search for the event by title:</p>
+    <p>Search for the product by name:</p>
 </div>
 
 <div class="container">
@@ -30,8 +30,9 @@
       <center><img src="{{ imagepath }}" height="600"></img></center>
       <br>
       <br>
-      <h4>{{ title }}</h3>      
+      <h4>{{ name }}</h3>      
       <h5>{{ desc }}</h3>
+      <h5>{{ price }}</h3>
         <br>
         <button type="submit" class="btn btn-danger" name="delete">Delete</button>
   {% endif %}
