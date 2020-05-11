@@ -120,4 +120,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 LOGIN_REDIRECT_URL = 'mobileadmin-home'
-ALLOWED_HOSTS = ['https://chiguru-ecospace-website.el.r.appspot.com']
+ALLOWED_HOSTS = ['https://chiguru-ecospace-website.el.r.appspot.com', '35.226.92.144']
