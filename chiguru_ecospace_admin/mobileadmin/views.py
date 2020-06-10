@@ -61,10 +61,12 @@ def addevent(request):
             name = form.cleaned_data.get('title') 
             desc = form.cleaned_data.get('description') 
             img = form.cleaned_data.get('image') 
+            dt = form.cleaned_data.get('date')
             obj = Eventmodel.objects.create( 
                                  title = name, 
                                  description = desc, 
-                                 image = img 
+                                 image = img,
+                                 date = dt
                                  ) 
             obj.save() 
 
@@ -77,10 +79,11 @@ def addevent(request):
 
         title = data['title']
         desc = data['description']
+        date = data['date']
 
         source = "/home/captainspockears/Projects/Chiguru-admin-webapp/chiguru_ecospace_admin/mobileadmin/static/mobileadmin/images/cache/"+imagename+'.'+imagetype
 
-        event = Event(title, desc)
+        event = Event(title, date, desc)
         event.addImage(imagename, source, imagetype)
         event.addEvent()
 
@@ -111,7 +114,6 @@ def updateevent(request):
         eventid = event.getEventId()
 
         if eventid is False:
-            print("hello")
             form = SearchForm()
             context = {'form':form, 'warningflag':True}
             return render(request,'mobileadmin/events/update.html', context)    
@@ -125,7 +127,7 @@ def updateevent(request):
         f.write(jsonStr)
         f.close()
 
-        context = {'form':form, 'searchvisibility':True, 'dispflag':True, 'title':event.title, 'desc':event.description, 'imagepath': imageurl}
+        context = {'form':form, 'searchvisibility':True, 'dispflag':True, 'title':event.title, 'date': event.date, 'desc':event.description, 'imagepath': imageurl}
         return render(request,'mobileadmin/events/update.html', context)
 
     elif request.method == 'POST' and 'image' in request.POST:
@@ -139,7 +141,7 @@ def updateevent(request):
         event = Event(jsonobj=jsonobject)
 
         imageurl = event.getImage()
-        context = {'form':form, 'searchvisibility':True, 'imageflag':True,'title':event.title, 'desc':event.description, 'imagepath': imageurl}
+        context = {'form':form, 'searchvisibility':True, 'imageflag':True,'title':event.title, 'date': event.date, 'desc':event.description, 'imagepath': imageurl}
         
         return render(request,'mobileadmin/events/update.html', context)
 
@@ -154,7 +156,22 @@ def updateevent(request):
         event = Event(jsonobj=jsonobject)
 
         imageurl = event.getImage()
-        context = {'form':form, 'searchvisibility':True, 'titleflag':True,'title':event.title, 'desc':event.description, 'imagepath': imageurl}
+        context = {'form':form, 'searchvisibility':True, 'titleflag':True,'title':event.title, 'date': event.date, 'desc':event.description, 'imagepath': imageurl}
+
+        return render(request,'mobileadmin/events/update.html', context)
+
+    elif request.method == 'POST' and 'date' in request.POST:
+        form = SearchForm(request.POST)
+
+        f = open("temp.json", "r")
+        jsonStr = f.read()
+        f.close()
+
+        jsonobject = json.loads(jsonStr)
+        event = Event(jsonobj=jsonobject)
+
+        imageurl = event.getImage()
+        context = {'form':form, 'searchvisibility':True, 'dateflag':True,'title':event.title, 'date': event.date, 'desc':event.description, 'imagepath': imageurl}
 
         return render(request,'mobileadmin/events/update.html', context)
 
@@ -169,7 +186,7 @@ def updateevent(request):
         event = Event(jsonobj=jsonobject)
 
         imageurl = event.getImage()
-        context = {'form':form, 'searchvisibility':True, 'descflag':True,'title':event.title, 'desc':event.description, 'imagepath': imageurl}
+        context = {'form':form, 'searchvisibility':True, 'descflag':True,'title':event.title, 'date': event.date, 'desc':event.description, 'imagepath': imageurl}
         
         return render(request,'mobileadmin/events/update.html', context)
 
@@ -180,7 +197,8 @@ def updateevent(request):
         obj = Eventmodel.objects.create( 
                                  title = 'name', 
                                  description = 'desc', 
-                                 image = imagedata 
+                                 image = imagedata, 
+                                 date = 'date'
                                  ) 
         obj.save()
 
@@ -215,6 +233,23 @@ def updateevent(request):
         event = Event(jsonobj=jsonobject)
 
         event.updateTitle(title)
+
+        form = SearchForm()
+        context = {'form':form}
+        return render(request,'mobileadmin/events/update.html', context)
+    
+    elif request.method == 'POST' and 'datesubmit' in request.POST:
+        data = request.POST
+        date = data['dateinput']
+
+        f = open("temp.json", "r")
+        jsonStr = f.read()
+        f.close()
+
+        jsonobject = json.loads(jsonStr)
+        event = Event(jsonobj=jsonobject)
+
+        event.updateDate(date)
 
         form = SearchForm()
         context = {'form':form}
@@ -256,6 +291,7 @@ def deleteevent(request):
         event = Event(title)
 
         eventid = event.getEventId()
+        
         if eventid is False:
             form = SearchForm()
             context = {'form':form, 'warningflag':True}
@@ -270,7 +306,7 @@ def deleteevent(request):
         f.write(jsonStr)
         f.close()
 
-        context = {'form':form, 'searchvisibility':True, 'dispflag':True, 'title':event.title, 'desc':event.description, 'imagepath': imageurl}
+        context = {'form':form, 'searchvisibility':True, 'dispflag':True, 'title':event.title, 'date':event.date, 'desc':event.description, 'imagepath': imageurl}
         return render(request,'mobileadmin/events/delete.html', context)
 
     if request.method == 'POST' and 'delete' in request.POST:

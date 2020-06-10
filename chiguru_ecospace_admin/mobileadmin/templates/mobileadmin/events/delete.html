@@ -16,7 +16,9 @@
         {% endfor %}
 
     <button type="submit" class="btn btn-primary" name="search">Search</button>
-
+    {% if warningflag %}
+    <p>Event not found. Please make sure you have written the correct title.</p>
+    {% endif %}
 </form>
 </div>
 
@@ -30,7 +32,8 @@
       <center><img src="{{ imagepath }}" height="600"></img></center>
       <br>
       <br>
-      <h4>{{ title }}</h3>      
+      <h4>{{ title }}</h3>     
+      <h5>{{ date }}</h3>  
       <h5>{{ desc }}</h3>
         <br>
         <button type="submit" class="btn btn-danger" name="delete">Delete</button>

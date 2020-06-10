@@ -2,12 +2,13 @@ from mobileadmin.Firebaseengine import Firebaseengine as Fb
 
 class Event:
 
-    def __init__(self, title='', description='', imagepath='', eventid='', jsonobj=''):
+    def __init__(self, title='', date='', description='', imagepath='', eventid='', jsonobj=''):
 
         if jsonobj == '':
             self.title = title
             self.imagepath = imagepath
             self.description = description 
+            self.date = date
             self.eventid = eventid
             self.collectionid = 'events'
             self.folder = 'events-pictures'
@@ -15,6 +16,7 @@ class Event:
             self.title = jsonobj["title"]
             self.imagepath = jsonobj["imagepath"]
             self.description = jsonobj["description"]
+            self.date = jsonobj['date']
             self.eventid = jsonobj["eventid"]
             self.collectionid = jsonobj["collectionid"]
             self.folder = jsonobj["folder"]
@@ -23,18 +25,19 @@ class Event:
         self.fb = Fb(path='/home/captainspockears/Projects/Chiguru-admin-webapp/chiguru_ecospace_admin/mobileadmin/authkey/chiguru-mobile-app-firebase-adminsdk-k59u9-308aabfbcd.json', appid='chiguru-mobile-app.appspot.com')
     
     def to_dict(self):
-        return { 'Title':self.title, "Imagepath":self.imagepath, "Description":self.description }
+        return { 'Title':self.title, "Imagepath":self.imagepath, "Description":self.description, "Date":self.date }
 
     def to_json(self):
-        return '{ "title":"'+ self.title +'", "description":"'+ self.description +'", "imagepath":"'+ self.imagepath +'", "eventid":"'+ self.eventid +'", "collectionid":"'+ self.collectionid +'", "folder":"'+ self.folder +'"}'
+        return '{ "title":"'+ self.title +'", "description":"'+ self.description +'", "date":"'+ self.date +'", "imagepath":"'+ self.imagepath +'", "eventid":"'+ self.eventid +'", "collectionid":"'+ self.collectionid +'", "folder":"'+ self.folder +'"}'
     
     def to_event(self, objectdict):
         self.title = objectdict['Title']
         self.imagepath = objectdict['Imagepath']
         self.description = objectdict['Description']
+        self.date = objectdict['Date']
 
     def print_event(self):
-        print("{} {} \n\n{} \n\n{}".format(self.eventid, self.title, self.description, self.imagepath))
+        print("{} {}\n\n {} \n\n{} \n\n{}".format(self.eventid, self.title, self.date, self.description, self.imagepath))
 
     def addEvent(self):
         self.eventid = self.fb.addObject(self.collectionid, self.to_dict())
@@ -54,7 +57,7 @@ class Event:
         self.imagepath = self.fb.updateImage(self.imagepath, self.folder, imagename, source, imagetype)
 
         #update the image path
-        data = {'Title': self.title, 'Description': self.description, 'Imagepath': self.imagepath}
+        data = {'Title': self.title, 'Description': self.description, 'Imagepath': self.imagepath, 'Date': self.date}
         self.fb.updateObject(self.collectionid, self.eventid, data)
 
     def updateTitle(self, newtitle):
@@ -62,7 +65,15 @@ class Event:
         self.title = newtitle
 
         #update the title
-        data = {'Title': self.title, 'Description': self.description, 'Imagepath': self.imagepath}
+        data = {'Title': self.title, 'Description': self.description, 'Imagepath': self.imagepath, 'Date': self.date}
+        self.fb.updateObject(self.collectionid, self.eventid, data)
+
+    def updateDate(self, newDate):
+
+        self.date = newDate
+
+        #update the date
+        data = {'Title': self.title, 'Description': self.description, 'Imagepath': self.imagepath, 'Date': self.date}
         self.fb.updateObject(self.collectionid, self.eventid, data)
 
     def updateDescription(self, newdesc):
@@ -70,7 +81,7 @@ class Event:
         self.description = newdesc
 
         #update the title
-        data = {'Title': self.title, 'Description': self.description, 'Imagepath': self.imagepath}
+        data = {'Title': self.title, 'Description': self.description, 'Imagepath': self.imagepath, 'Date': self.date}
         self.fb.updateObject(self.collectionid, self.eventid, data)  
 
     def getEventId(self):

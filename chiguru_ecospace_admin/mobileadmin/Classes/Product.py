@@ -17,7 +17,7 @@ class Product:
             self.imagepath = jsonobj["imagepath"]
             self.description = jsonobj["description"]
             self.productid = jsonobj["productid"]
-            self.price = int(jsonobj["price"])
+            self.price = jsonobj["price"]
             self.collectionid = jsonobj["collectionid"]
             self.folder = jsonobj["folder"]
 
@@ -34,7 +34,7 @@ class Product:
         self.name = objectdict['Name']
         self.imagepath = objectdict['Imagepath']
         self.description = objectdict['Description']
-        self.price = int(objectdict['Price'])
+        self.price = objectdict['Price']
 
     def print_product(self):
         print("{} {} \n\n{} \n\n{} \n\n{}".format(self.productid, self.name, self.description, self.imagepath, self.price))

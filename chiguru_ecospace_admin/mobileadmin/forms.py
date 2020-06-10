@@ -7,6 +7,7 @@ class ImageForm(forms.Form):
 
 class EventForm(forms.Form):
     title = forms.CharField()
+    date = forms.CharField()
     description = forms.CharField(widget=forms.Textarea)
     image = forms.ImageField()
 
@@ -14,7 +15,7 @@ class ProductForm(forms.Form):
     name = forms.CharField()
     description = forms.CharField(widget=forms.Textarea)
     image = forms.ImageField()
-    price = forms.IntegerField()
+    price = forms.CharField()
 
 class ItemForm(forms.Form):
     name = forms.CharField()
