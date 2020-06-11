@@ -3,8 +3,8 @@ runtime: python37
 handlers:
 - url: /static
   static_dir: static/
--url: /.*
- script: auto
+- url: /.*
+  script: auto
 
- env_variables:
-  DJANGO_SETTINGS_MODULE: chiguru_ecospace_admin.settings.production
+env_variables:
+  DJANGO_SETTINGS_MODULE: chiguru_ecospace_admin.settings
