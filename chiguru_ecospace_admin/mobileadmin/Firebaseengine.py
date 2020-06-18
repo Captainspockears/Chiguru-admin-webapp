@@ -8,15 +8,28 @@ class Firebaseengine:
 
     def __init__(self, path, appid):
 
-        cred = credentials.Certificate(path)     
+        if(true):
 
-        try:
-            # Use a service account
-            firebase_admin.initialize_app(cred, {
-                'storageBucket': appid
-            })   
-        except:
-            print("Firebase Engine Already initialized.")
+            # Use the application default credentials for gcp
+            cred = credentials.ApplicationDefault()
+            try:
+                firebase_admin.initialize_app(cred, {
+                    'projectId': project_id,
+                })
+            except:
+                print("Firebase Engine Already initialized.")
+
+        else:
+
+            #Outside GCP
+            cred = credentials.Certificate(path)   
+            try:
+                # Use a service account
+                firebase_admin.initialize_app(cred, {
+                    'storageBucket': appid
+                })   
+            except:
+                print("Firebase Engine Already initialized.")
 
         self.appid = appid
         self.db = firestore.client()
