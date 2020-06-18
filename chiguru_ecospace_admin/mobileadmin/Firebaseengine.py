@@ -8,7 +8,7 @@ class Firebaseengine:
 
     def __init__(self, path, appid):
 
-        if(true):
+        if(True):
 
             # Use the application default credentials for gcp
             cred = credentials.ApplicationDefault()
