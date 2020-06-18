@@ -14,8 +14,9 @@ class Firebaseengine:
             cred = credentials.ApplicationDefault()
             try:
                 firebase_admin.initialize_app(cred, {
-                    'projectId': project_id,
+                    'projectId': 'chiguru-ecospace-website',
                 })
+                print('Firebase initialised!')
             except:
                 print("Firebase Engine Already initialized.")
 
