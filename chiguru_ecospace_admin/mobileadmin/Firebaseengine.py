@@ -14,7 +14,7 @@ class Firebaseengine:
             cred = credentials.ApplicationDefault()
             try:
                 firebase_admin.initialize_app(cred, {
-                    'projectId': 'chiguru-ecospace-website',
+                    'storageBucket': appid
                 })
                 print('Firebase initialised!')
             except:
