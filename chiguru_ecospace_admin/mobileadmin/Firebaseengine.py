@@ -4,9 +4,10 @@ from firebase_admin import credentials
 from firebase_admin import firestore
 from firebase_admin import storage
 
+
 class Firebaseengine:
 
-    def __init__(self, path, appid):
+    def __init__(self, path, appid, projectid):
 
         if(False):
             # Use the application default credentials for gcp
@@ -18,6 +19,7 @@ class Firebaseengine:
         try:
             # Use a service account
             firebase_admin.initialize_app(cred, {
+                'projectId': projectid,
                 'storageBucket': appid
             })   
         except:

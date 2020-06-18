@@ -10,6 +10,8 @@ from .forms import ProductForm
 from .forms import ItemForm
 import json
 
+import os
+
 from .Classes.Event import Event
 from .models import Event as Eventmodel
 
@@ -39,8 +41,11 @@ def logout(request):
 
 #analytics
 @staff_member_required
-def analytics(request):
-    return render(request,'mobileadmin/analytics.html')
+def analytics(request): 
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    file_list = os.listdir()
+    context = {'path':dir_path, 'filelist':file_list}
+    return render(request,'mobileadmin/analytics.html', context)
 
 #edits
 @staff_member_required
@@ -123,7 +128,7 @@ def updateevent(request):
         imageurl = event.getImage()
 
         jsonStr = event.to_json()
-        f = open("temp.json", "w")
+        f = open("/tmp/temp.json", "w")
         f.write(jsonStr)
         f.close()
 
@@ -133,7 +138,7 @@ def updateevent(request):
     elif request.method == 'POST' and 'image' in request.POST:
         form = SearchForm(request.POST)
 
-        f = open("temp.json", "r")
+        f = open("/tmp/temp.json", "r")
         jsonStr = f.read()
         f.close()
 
@@ -148,7 +153,7 @@ def updateevent(request):
     elif request.method == 'POST' and 'title' in request.POST:
         form = SearchForm(request.POST)
 
-        f = open("temp.json", "r")
+        f = open("/tmp/temp.json", "r")
         jsonStr = f.read()
         f.close()
 
@@ -163,7 +168,7 @@ def updateevent(request):
     elif request.method == 'POST' and 'date' in request.POST:
         form = SearchForm(request.POST)
 
-        f = open("temp.json", "r")
+        f = open("/tmp/temp.json", "r")
         jsonStr = f.read()
         f.close()
 
@@ -178,7 +183,7 @@ def updateevent(request):
     elif request.method == 'POST' and 'description' in request.POST:
         form = SearchForm(request.POST)
 
-        f = open("temp.json", "r")
+        f = open("/tmp/temp.json", "r")
         jsonStr = f.read()
         f.close()
 
@@ -202,7 +207,7 @@ def updateevent(request):
                                  ) 
         obj.save()
 
-        f = open("temp.json", "r")
+        f = open("/tmp/temp.json", "r")
         jsonStr = f.read()
         f.close()
 
@@ -225,7 +230,7 @@ def updateevent(request):
         data = request.POST
         title = data['titleinput']
 
-        f = open("temp.json", "r")
+        f = open("/tmp/temp.json", "r")
         jsonStr = f.read()
         f.close()
 
@@ -242,7 +247,7 @@ def updateevent(request):
         data = request.POST
         date = data['dateinput']
 
-        f = open("temp.json", "r")
+        f = open("/tmp/temp.json", "r")
         jsonStr = f.read()
         f.close()
 
@@ -259,7 +264,7 @@ def updateevent(request):
         data = request.POST
         desc = data['descinput']
 
-        f = open("temp.json", "r")
+        f = open("/tmp/temp.json", "r")
         jsonStr = f.read()
         f.close()
 
@@ -302,7 +307,7 @@ def deleteevent(request):
         imageurl = event.getImage()
 
         jsonStr = event.to_json()
-        f = open("temp.json", "w")
+        f = open("/tmp/temp.json", "w")
         f.write(jsonStr)
         f.close()
 
@@ -311,7 +316,7 @@ def deleteevent(request):
 
     if request.method == 'POST' and 'delete' in request.POST:
 
-        f = open("temp.json", "r")
+        f = open("/tmp/temp.json", "r")
         jsonStr = f.read()
         f.close()
 
@@ -401,7 +406,7 @@ def updateproduct(request):
         imageurl = product.getImage()
 
         jsonStr = product.to_json()
-        f = open("temp.json", "w")
+        f = open("/tmp/temp.json", "w")
         f.write(jsonStr)
         f.close()
 
@@ -411,7 +416,7 @@ def updateproduct(request):
     elif request.method == 'POST' and 'image' in request.POST:
         form = SearchForm(request.POST)
 
-        f = open("temp.json", "r")
+        f = open("/tmp/temp.json", "r")
         jsonStr = f.read()
         f.close()
 
@@ -426,7 +431,7 @@ def updateproduct(request):
     elif request.method == 'POST' and 'name' in request.POST:
         form = SearchForm(request.POST)
 
-        f = open("temp.json", "r")
+        f = open("/tmp/temp.json", "r")
         jsonStr = f.read()
         f.close()
 
@@ -441,7 +446,7 @@ def updateproduct(request):
     elif request.method == 'POST' and 'description' in request.POST:
         form = SearchForm(request.POST)
 
-        f = open("temp.json", "r")
+        f = open("/tmp/temp.json", "r")
         jsonStr = f.read()
         f.close()
 
@@ -456,7 +461,7 @@ def updateproduct(request):
     elif request.method == 'POST' and 'price' in request.POST:
         form = SearchForm(request.POST)
 
-        f = open("temp.json", "r")
+        f = open("/tmp/temp.json", "r")
         jsonStr = f.read()
         f.close()
 
@@ -480,7 +485,7 @@ def updateproduct(request):
                                 ) 
         obj.save() 
         
-        f = open("temp.json", "r")
+        f = open("/tmp/temp.json", "r")
         jsonStr = f.read()
         f.close()
 
@@ -503,7 +508,7 @@ def updateproduct(request):
         data = request.POST
         name = data['nameinput']
 
-        f = open("temp.json", "r")
+        f = open("/tmp/temp.json", "r")
         jsonStr = f.read()
         f.close()
 
@@ -520,7 +525,7 @@ def updateproduct(request):
         data = request.POST
         desc = data['descinput']
 
-        f = open("temp.json", "r")
+        f = open("/tmp/temp.json", "r")
         jsonStr = f.read()
         f.close()
 
@@ -537,7 +542,7 @@ def updateproduct(request):
         data = request.POST
         price = data['priceinput']
 
-        f = open("temp.json", "r")
+        f = open("/tmp/temp.json", "r")
         jsonStr = f.read()
         f.close()
 
@@ -579,7 +584,7 @@ def deleteproduct(request):
         imageurl = product.getImage()
 
         jsonStr = product.to_json()
-        f = open("temp.json", "w")
+        f = open("/tmp/temp.json", "w")
         f.write(jsonStr)
         f.close()
 
@@ -588,7 +593,7 @@ def deleteproduct(request):
 
     if request.method == 'POST' and 'delete' in request.POST:
 
-        f = open("temp.json", "r")
+        f = open("/tmp/temp.json", "r")
         jsonStr = f.read()
         f.close()
 
@@ -675,7 +680,7 @@ def updateitem(request):
         imageurl = item.getImage()
 
         jsonStr = item.to_json()
-        f = open("temp.json", "w")
+        f = open("/tmp/temp.json", "w")
         f.write(jsonStr)
         f.close()
 
@@ -685,7 +690,7 @@ def updateitem(request):
     elif request.method == 'POST' and 'image' in request.POST:
         form = SearchForm(request.POST)
 
-        f = open("temp.json", "r")
+        f = open("/tmp/temp.json", "r")
         jsonStr = f.read()
         f.close()
 
@@ -700,7 +705,7 @@ def updateitem(request):
     elif request.method == 'POST' and 'name' in request.POST:
         form = SearchForm(request.POST)
 
-        f = open("temp.json", "r")
+        f = open("/tmp/temp.json", "r")
         jsonStr = f.read()
         f.close()
 
@@ -715,7 +720,7 @@ def updateitem(request):
     elif request.method == 'POST' and 'description' in request.POST:
         form = SearchForm(request.POST)
 
-        f = open("temp.json", "r")
+        f = open("/tmp/temp.json", "r")
         jsonStr = f.read()
         f.close()
 
@@ -738,7 +743,7 @@ def updateitem(request):
                                 ) 
         obj.save() 
         
-        f = open("temp.json", "r")
+        f = open("/tmp/temp.json", "r")
         jsonStr = f.read()
         f.close()
 
@@ -761,7 +766,7 @@ def updateitem(request):
         data = request.POST
         name = data['nameinput']
 
-        f = open("temp.json", "r")
+        f = open("/tmp/temp.json", "r")
         jsonStr = f.read()
         f.close()
 
@@ -778,7 +783,7 @@ def updateitem(request):
         data = request.POST
         desc = data['descinput']
 
-        f = open("temp.json", "r")
+        f = open("/tmp/temp.json", "r")
         jsonStr = f.read()
         f.close()
 
@@ -820,7 +825,7 @@ def deleteitem(request):
         imageurl = item.getImage()
 
         jsonStr = item.to_json()
-        f = open("temp.json", "w")
+        f = open("/tmp/temp.json", "w")
         f.write(jsonStr)
         f.close()
 
@@ -829,7 +834,7 @@ def deleteitem(request):
 
     if request.method == 'POST' and 'delete' in request.POST:
 
-        f = open("temp.json", "r")
+        f = open("/tmp/temp.json", "r")
         jsonStr = f.read()
         f.close()
 
