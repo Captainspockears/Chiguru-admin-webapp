@@ -8,14 +8,15 @@ class Firebaseengine:
 
     def __init__(self, path, appid):
 
-        if(true):
+        if(True):
 
             # Use the application default credentials for gcp
             cred = credentials.ApplicationDefault()
             try:
                 firebase_admin.initialize_app(cred, {
-                    'projectId': project_id,
+                    'projectId': 'chiguru-ecospace-website',
                 })
+                print('Firebase initialised!')
             except:
                 print("Firebase Engine Already initialized.")
 
