@@ -87,7 +87,7 @@ if os.getenv('GAE_APPLICATION', None):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'HOST': '/cloudsql/chiguru-ecospace-website:asia-south1:polls-instance',
+            'HOST': '/cloudsql/chiguru-mobile-app:asia-south1:chiguru-djangoapp-instance',
             'USER': 'admin',
             'PASSWORD': 'drusiri123',
             'NAME': 'main',
@@ -152,4 +152,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 LOGIN_REDIRECT_URL = 'mobileadmin-home'
-ALLOWED_HOSTS = ['chiguru-ecospace-website.el.r.appspot.com', 'localhost']
+ALLOWED_HOSTS = ['chiguru-ecospace-website.el.r.appspot.com', 'localhost', '127.0.0.1']

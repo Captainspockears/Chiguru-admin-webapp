@@ -20,7 +20,7 @@ class Item:
             self.folder = jsonobj["folder"]
 
 
-        self.fb = Fb(path='chiguru-mobile-app-firebase-adminsdk-k59u9-308aabfbcd.json', appid='chiguru-mobile-app.appspot.com')
+        self.fb = Fb(path='/home/captainspockears/Projects/Chiguru-admin-webapp/chiguru_ecospace_admin/mobileadmin/Classes/chiguru-mobile-app-firebase-adminsdk-k59u9-308aabfbcd.json', appid='chiguru-mobile-app.appspot.com')
 
     def to_dict(self):
 
